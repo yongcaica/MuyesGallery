@@ -23,7 +23,8 @@ app.set("view engine", "ejs");
 
 var artworkSchema = new mongoose.Schema({
    name: String,
-   image: String
+   image: String,
+   desc: String
 });
 
 var Artwork = mongoose.model("Artwork", artworkSchema);
