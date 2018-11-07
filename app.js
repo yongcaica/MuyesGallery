@@ -1,6 +1,9 @@
-var express   = require("express"),
-    app       = express(),
-	mongoose  = require("mongoose");
+var express         = require("express"),
+    app             = express(),
+	mongoose        = require("mongoose"),
+	methodOverride  = require("method-override"),
+	Artwork         = require("./models/artwork")
+	// seedDB          = require("./seeds")
 
 var indexRoutes    = require("./routes/index"),
     artworkRoutes  = require("./routes/artworks")
@@ -18,16 +21,9 @@ mongoose.connection.on('error', function(){
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
-
-var artworkSchema = new mongoose.Schema({
-   name: String,
-   image: String,
-   desc: String
-});
-
-var Artwork = mongoose.model("Artwork", artworkSchema);
 
 app.use("/", indexRoutes);
 app.use("/artworks", artworkRoutes);
