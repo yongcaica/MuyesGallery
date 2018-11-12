@@ -8,7 +8,7 @@ var express         = require("express"),
 var indexRoutes    = require("./routes/index"),
     artworkRoutes  = require("./routes/artworks")
 
-mongoose.connect("mongodb://127.0.0.1:27017/muyesgallery");
+mongoose.connect("mongodb://127.0.0.1:27017/muyesgallery", {useNewUrlParser: true });
 // 连接成功
 mongoose.connection.on('open', function(){
     console.log('MongoDB Connection Successed');

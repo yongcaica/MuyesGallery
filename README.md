@@ -91,3 +91,9 @@ show collections
 db.artworks.find()
 db.artworks.remove({"name": "Cotton Candy"})
 db.artworks.remove({"name": "Cotton Candy"}, 1)  --------如果只想删掉满足要求的第一条数据
+
+
+DeprecationWarning: current URL string parser is deprecated #1
+use this
+mongoose.connect('mongodb://user:password@sample.com:port/dbname', { useNewUrlParser: true })
+
