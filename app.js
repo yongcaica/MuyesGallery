@@ -10,11 +10,11 @@ var indexRoutes    = require("./routes/index"),
 
 /*
 mongoose.connect("mongodb://127.0.0.1:27017/muyesgallery", {useNewUrlParser: true });
-// 连接成功
+// connect successfully
 mongoose.connection.on('open', function(){
     console.log('MongoDB Connection Successed');
 });
-// 连接失败
+// connect fail
 mongoose.connection.on('error', function(){
     console.log('MongoDB Connection Error');
 });
