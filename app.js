@@ -8,6 +8,7 @@ var express         = require("express"),
 var indexRoutes    = require("./routes/index"),
     artworkRoutes  = require("./routes/artworks")
 
+/*
 mongoose.connect("mongodb://127.0.0.1:27017/muyesgallery", {useNewUrlParser: true });
 // 连接成功
 mongoose.connection.on('open', function(){
@@ -17,8 +18,18 @@ mongoose.connection.on('open', function(){
 mongoose.connection.on('error', function(){
     console.log('MongoDB Connection Error');
 });
+*/
 
-var bodyParser = require('body-parser')
+mongoose.connect("mongodb+srv://yong:caiyong1@cluster0-n172n.mongodb.net/muye?retryWrites=true", {useNewUrlParser: true });
+//"muye" is the name of database
+mongoose.connection.on('open', function(){
+    console.log('MongoDB Connection Successed');
+});
+mongoose.connection.on('error', function(){
+    console.log('MongoDB Connection Error');
+});
+
+var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(methodOverride("_method"));

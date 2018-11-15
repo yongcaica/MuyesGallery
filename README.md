@@ -50,7 +50,11 @@ app                                    = express();
 mongoose.connect(("mongodb://localhost/restful_blog_app");    -----------app name is restful_blog_app
 app.set("view engine", "ejs");         --------in order to use ejs
 app.use(express.static("public"));     ---------serve our custom stylesheet
-app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
+-------bodyParser.urlencoded 模块用于解析req.body的数据，解析成功后覆盖原来的req.body，如果解析失败则为 {}。
+
 app.use(expressSanitizer());   ----------should be after bodyParser
 app.use(methodOverride("_method"));
 app.use(require("express-session")({         -------只要用到passport就要用这行
@@ -96,4 +100,3 @@ db.artworks.remove({"name": "Cotton Candy"}, 1)  --------如果只想删掉满�
 DeprecationWarning: current URL string parser is deprecated #1
 use this
 mongoose.connect('mongodb://user:password@sample.com:port/dbname', { useNewUrlParser: true })
-
