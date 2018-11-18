@@ -34,7 +34,9 @@ router.post("/", function(req, res){       //actually the route is "/artworks"
             console.log(err);
         } else {
             //redirect back to artworks page
-            console.log(newlyCreated);
+            // console.log(newlyCreated);
+            // console.log(name);
+            // console.log(req.body.name);
             res.redirect("/artworks");    //"res.redirect" show the absolute route
         }
     });
@@ -61,7 +63,7 @@ router.get("/:id/edit", function(req, res){            //actually the route is "
         console.log(err);
       } else {
         // console.log(foundArtwork);
-        res.render("artworks/edit", {artwork: foundArtwork});
+        res.render("artworks/edit", {artwork: foundArtwork});   //这里的artworks是views目录下的artworks目录（res.render默认打开views目录）中的edit.ejs页面
         //edit某个specific artwork，所以这里要pass in一个对象参数foundArtwork
       }
     });
@@ -70,12 +72,14 @@ router.get("/:id/edit", function(req, res){            //actually the route is "
 // UPDATE ARTWORK ROUTE------要先安装method-override，npm install method-override，http form目前只支持get和post，不支持put和delete这些请求，需要method-override来转换一下
 router.put("/:id", function(req, res){
   // find and update the correct artwork
-  Artwork.findByIdAndUpdate(req.params.id, req.body.artwork, {new: true}, function(err, updatedArtwork){
+  var data = {name: req.body.name, image: req.body.image, description: req.body.description};
+  Artwork.findByIdAndUpdate(req.params.id, data, {new: true}, function(err, updatedArtwork){
     if(err){
       res.redirect("/artworks");
     } else {
       //or use "updatedArtwork._id" replace "req.params.id"
-      console.log(req.body.artwork);
+      console.log(req.body);
+      // console.log(updatedArtwork);
       res.redirect("/artworks/" + req.params.id);
       // console.log(updatedArtwork);
     }

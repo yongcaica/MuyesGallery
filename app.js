@@ -1,5 +1,6 @@
 var express         = require("express"),
     app             = express(),
+    bodyParser      = require("body-parser"),
 	mongoose        = require("mongoose"),
 	methodOverride  = require("method-override"),
 	Artwork         = require("./models/artwork")
@@ -28,13 +29,11 @@ mongoose.connection.on('open', function(){
 mongoose.connection.on('error', function(){
     console.log('MongoDB Connection Error');
 });
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 
-app.set("view engine", "ejs");
 
 app.use("/", indexRoutes);
 app.use("/artworks", artworkRoutes);
