@@ -72,13 +72,13 @@ router.get("/:id/edit", function(req, res){            //actually the route is "
 // UPDATE ARTWORK ROUTE------要先安装method-override，npm install method-override，http form目前只支持get和post，不支持put和delete这些请求，需要method-override来转换一下
 router.put("/:id", function(req, res){
   // find and update the correct artwork
-  var data = {name: req.body.name, image: req.body.image, description: req.body.description};
-  Artwork.findByIdAndUpdate(req.params.id, data, {new: true}, function(err, updatedArtwork){
+  // var data = {name: req.body.name, image: req.body.image, description: req.body.description};
+  Artwork.findByIdAndUpdate(req.params.id, req.body.data, {new: true}, function(err, updatedArtwork){
     if(err){
       res.redirect("/artworks");
     } else {
       //or use "updatedArtwork._id" replace "req.params.id"
-      console.log(req.body);
+      console.log(req.body.data);
       // console.log(updatedArtwork);
       res.redirect("/artworks/" + req.params.id);
       // console.log(updatedArtwork);
