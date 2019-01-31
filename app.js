@@ -30,7 +30,7 @@ mongoose.connection.on('error', function(){
     console.log('MongoDB Connection Error');
 });
 // app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: false}));  
 app.use(bodyParser.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
